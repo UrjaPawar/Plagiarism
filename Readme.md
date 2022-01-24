@@ -16,7 +16,6 @@ Both feature importance and counterfactuals present explanations based on featur
 #### Robustness
 For black-box classifiers, feature importance and counterfactuals are estimated using different techniques that involves either training an interpretable classifier to mimic black-box in local neighbourhood, or perturbations based on insertion and removal of features by capturing how the insertion/removal impacts model's output. As these are based on estimation or approximation techniques, a set of evaluation metrics are required to represent the faithfulness of explanations to assess whether or not they truly represent the black-box model. These metrics represent the “robustness” of explanations.
 
-### Contribution of the Paper
 ### What’s this about?
 This blog post describes contribution of the paper titled "Evaluations and Methods for Explanations Through Robustness Analysis" by [Cheng et. al](https://openreview.net/forum?id=Hye4KeSYDr) that discusses assessing the robustness of an explanation in a novel way and presents a more robust explanation. The contribution lies in the specific domain of Explainable AI (XAI) methods that generate explanations by capturing the impact of insertion and removal of features on model’s output. Explainable AI methods that are based on insertion/removal face two drawbacks. Let’s assume that we want to estimate feature importance from such XAI techniques, then:
 1.	 When the feature importance is estimated by removing a feature by setting it to a baseline value, it has higher chance to attribute high importance to a feature if some values deflect a lot from baseline. An example would be setting RGB pixels to black, that will give bright pixels more importance.
@@ -49,11 +48,11 @@ Similarly, minimising *δ* over a set of important features **S** should give re
 #### AUC (Area-Under-Curve) Analysis
 With this evaluation metric R, we can also have a look at the AUC curve that is plotted against the top K features belonging to that subset. The top K features essentially ranks the top features in decreasing order of their R score while optimising the equation discussed previously.
 
-![AUC]({{ site.url }}/public/images/2021-09-01-evaluating_explanations/rnimp.PNG) 
-![AUC]({{ site.url }}/public/images/2021-09-01-evaluating_explanations/rsimp.PNG) 
+![AUC]({{ site.url }}/public/images/2021-12-01-Evaluation of Feature-based Explanations/nimp.png) 
 
-As shown in the AUC plot A, we should expect a large AUC if we use the R(S<sup>c</sup>) metric because of large R caused by requirement of large *δ*. The least important feature (K=1) shows the highest R(S<sup>c</sup>) value and subsequently as we progress towards less *non-important* features (or more important features), we get a lower R(S<sup>c</sup>) values. 
+As shown in the AUC plot A, we should expect a large AUC if we use the R(S<sup>c</sup>) metric because of large R caused by requirement of large *δ*. The least important feature (K=1) shows the highest R(S<sup>c</sup>) value and subsequently as we progress towards less *non-important* features (or more important features), we get a lower R(S<sup>c</sup>) values.
 
+![AUC]({{ site.url }}/public/images/2021-12-01-Evaluation of Feature-based Explanations/imp.png) 
 Similarly, in plot B, low AUC is obtained on using the R(S) metric. The first feature being highly impactful shows the least R(S) values and as we move towards less important features, the area starts to increase. 
 
 ### Counterfactual flavor
